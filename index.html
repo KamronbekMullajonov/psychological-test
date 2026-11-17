@@ -10,7 +10,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
   /* ===== Brend ranglari (brendbukdan) ===== */
@@ -190,46 +189,6 @@
 
   .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;line-height:20px;font-weight:600;transition:transform .35s;z-index:50}
   .toast.on{transform:translateX(-50%) translateY(0)}
-
-  /* ===== PDF shabloni (ekranda ko'rinmaydi) ===== */
-  #report{position:fixed;left:-10000px;top:0;width:794px;height:1123px;background:#fff;color:var(--ink);font-family:"Plus Jakarta Sans",sans-serif;display:flex;flex-direction:column}
-  #report .h{background:linear-gradient(160deg,#3D2BFF,#6A5CFF);color:#fff;padding:26px 48px;display:flex;justify-content:space-between;align-items:center}
-  #report .h .lg2{display:flex;align-items:center;gap:12px}
-  #report .h svg{width:40px;height:40px}
-  #report .h b{font-size:16px;line-height:18px;font-weight:800}
-  #report .h .m{text-align:right;font-size:13px;line-height:19px;font-weight:600}
-  #report .b{padding:28px 48px 24px;flex:1;overflow:hidden;display:flex;flex-direction:column}
-  #report .lb{font-size:13px;line-height:18px;color:var(--muted)}
-  #report .nm{font-size:30px;line-height:38px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
-  #report .hero2{background:var(--ink);color:#fff;padding:22px 28px;display:flex;gap:24px;align-items:center;border-radius:14px}
-  #report .pc{font-size:54px;line-height:1;font-weight:800;color:var(--yellow);letter-spacing:-.03em}
-  #report .hero2 small{font-size:13px;opacity:.75}
-  #report .hero2 h2{font-size:28px;line-height:34px;margin:2px 0 4px}
-  #report .hero2 p{font-size:13px;line-height:19px;opacity:.85}
-  #report h4{font-size:16px;line-height:22px;margin:22px 0 10px}
-  #report .mb{display:flex;height:16px;border-radius:99px;overflow:hidden;margin-bottom:12px}
-  #report .mb i{display:block;height:100%}
-  #report .lgd{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;font-size:13px;line-height:18px}
-  #report .lgd div{display:flex;align-items:center;gap:8px}
-  #report .lgd span.d{width:11px;height:11px;border-radius:3px}
-  #report .lgd b{margin-left:auto}
-  #report .bx2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
-  #report .bx{background:var(--gray);padding:16px 18px;border-radius:12px}
-  #report .bx h5{font-size:14px;line-height:20px;margin-bottom:8px}
-  #report .bx ul{list-style:none;display:grid;gap:8px;font-size:13.5px;line-height:20px}
-  #report .bx li{padding-left:15px;position:relative}
-  #report .bx li::before{content:"";position:absolute;left:0;top:5px;width:7px;height:7px;background:var(--indigo)}
-  #report .bx.y li::before{background:var(--yellow)}
-  #report .desc{font-size:15px;line-height:23px;color:#3b3848;margin-top:14px}
-  #report .sec2{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:14px;font-size:13.5px;line-height:20px;color:#3b3848}
-  #report .sec2 h5{font-size:14px;line-height:20px;color:var(--ink);margin-bottom:6px}
-  #report .sec2 p+h5{margin-top:12px}
-  #report .nt{background:var(--cream);padding:14px 18px;border-radius:12px;margin-top:14px;font-size:12px;line-height:18px;color:#3b3848}
-  #report .nt b{color:var(--ink)}
-  #report .nx{background:var(--indigo-l);padding:14px 18px;border-radius:12px;margin-top:auto}
-  #report .nx h5{font-size:14px;line-height:20px;margin-bottom:4px}
-  #report .nx .c{display:flex;gap:24px;font-size:13px;line-height:18px;font-weight:700;margin-top:6px}
-  #report .f{flex:none;border-top:1px solid var(--line);margin:0 48px;padding:12px 0 20px;display:flex;justify-content:space-between;font-size:12px;line-height:16px;color:var(--muted)}
 
   @media (max-width:900px){
     .hero .wrap{grid-template-columns:1fr}
@@ -438,37 +397,6 @@
 </footer>
 
 <div class="toast" id="toast"></div>
-
-<!-- PDF hisobot shabloni -->
-<div id="report">
-  <div class="h">
-    <div class="lg2"><svg viewBox="0 0 100 100" width="40" height="40"><path d="M0 0h40v14L20.2 50 40 85.8V100H0z" fill="#fff"/><path d="M54.4 0h7.7l15.1 47.7L91.6 0H100v100H54.4z" fill="#fff"/><rect x="42.3" y="44.9" width="9.8" height="10" fill="#FFB224"/><rect x="43" y="61.9" width="8.2" height="8.1" fill="#FFD17C"/><rect x="44.2" y="75.8" width="5.9" height="6.1" fill="#FFE4B2"/></svg><b>Komronbek<br>Mullajonov</b></div>
-    <div class="m"><span id="pTest"></span><br><span id="pDate"></span></div>
-  </div>
-  <div class="b">
-    <div class="lb">Ism</div>
-    <div class="nm" id="pName"></div>
-    <div class="hero2">
-      <div class="pc" id="pPct"></div>
-      <div><small>Sizga eng yaqin tur</small><h2 id="pTitle"></h2><p id="pTag"></p></div>
-    </div>
-    <div class="desc" id="pDesc"></div>
-    <h4>Sizning aralashmangiz</h4>
-    <div class="mb" id="pMix"></div>
-    <div class="lgd" id="pLgd"></div>
-    <div class="bx2">
-      <div class="bx"><h5>Kuchli tomonlaringiz</h5><ul id="pStrong"></ul></div>
-      <div class="bx y"><h5>Sizga foydali maslahatlar</h5><ul id="pTips"></ul></div>
-    </div>
-    <div class="sec2" id="pSec"></div>
-    <div class="nt"><b>Muhim:</b> bu test tashxis emas. U hech qanday daraja yoki muammoni o‘lchamaydi. Natija faqat javoblaringiz asosida tuzilgan va o‘zingizni yaxshiroq tanishga yordam beradi. Agar biror narsa uzoq vaqt sizni bezovta qilayotgan bo‘lsa, psixolog bilan gaplashing.</div>
-    <div class="nx">
-      <h5>Savollaringiz bo‘lsa, yozing</h5>
-      <div class="c"><span id="pTel"></span><span id="pTg"></span></div>
-    </div>
-  </div>
-  <div class="f"><b style="color:var(--ink)">Komronbek Mullajonov</b><span>Natija testdagi javoblaringiz asosida tuzildi</span></div>
-</div>
 
 <script>
 /* =====================================================================
@@ -811,39 +739,172 @@ $("#shareBtn").onclick = async ()=>{
   }catch(e){ toast("Havola: "+url); }
 };
 
-/* ---------- PDF ---------- */
-function fillReport(){
-  const T = TESTS[state.test], R = state.result, top = T.types[R[0].key], d = new Date(), p = n=>String(n).padStart(2,"0");
-  $("#pTest").textContent = T.title + " testi";
-  $("#pDate").textContent = p(d.getDate())+"."+p(d.getMonth()+1)+"."+d.getFullYear();
-  $("#pName").textContent = state.lead.name;
-  $("#pPct").textContent = R[0].pct + "%";
-  $("#pTitle").textContent = top.name;
-  $("#pTag").textContent = top.tag + " · 2-tur: " + T.types[R[1].key].name + " (" + R[1].pct + "%)";
-  $("#pDesc").textContent = top.desc;
-  $("#pMix").innerHTML = R.filter(r=>r.pct>0).map(r=>`<i style="width:${r.pct}%;background:${COLORS[R.indexOf(r)]}"></i>`).join("");
-  $("#pLgd").innerHTML = R.map((r,i)=>`<div><span class="d" style="background:${COLORS[i]}"></span>${T.types[r.key].name}<b>${r.pct}%</b></div>`).join("");
-  $("#pStrong").innerHTML = top.strong.map(s=>`<li>${s}</li>`).join("");
-  $("#pTips").innerHTML = top.tips.map(s=>`<li>${s}</li>`).join("");
-  const t2 = T.types[R[1].key], t3 = T.types[R[2].key];
-  $("#pSec").innerHTML = `<h5>Ikkinchi yaqin turingiz: ${t2.name} (${R[1].pct}%)</h5><p>${t2.desc}</p><h5>Uchinchi: ${t3.name} (${R[2].pct}%)</h5><p>${t3.desc}</p>`;
-  $("#pTel").textContent = "Tel: " + CONFIG.phone;
-  $("#pTg").textContent = "Telegram: " + CONFIG.telegram;
+/* ---------- PDF: haqiqiy matnli (vektor) hisobot ----------
+   Matn rasm emas, shuning uchun har qanday kattalikda tiniq, nusxalasa bo‘ladi,
+   havolalar bosiladi va fayl yengil. Shrift: Plus Jakarta Sans (brend shrifti). */
+const PDF_FONT_URL = "https://cdn.jsdelivr.net/gh/tokotype/PlusJakartaSans@master/fonts/ttf/PlusJakartaSans-";
+const PDF_WEIGHTS = { R:"Regular", M:"Medium", SB:"SemiBold", B:"Bold", XB:"ExtraBold" };
+let pdfFontCache = null;
+async function loadPdfFonts(){
+  if (pdfFontCache) return pdfFontCache;
+  const toB64 = buf => { let s="", b=new Uint8Array(buf); for (let i=0;i<b.length;i+=0x8000) s+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000)); return btoa(s); };
+  const entries = await Promise.all(Object.entries(PDF_WEIGHTS).map(async ([k,w])=>{
+    const r = await fetch(PDF_FONT_URL + w + ".ttf"); if (!r.ok) throw new Error("font " + w);
+    return [k, toB64(await r.arrayBuffer())];
+  }));
+  return (pdfFontCache = Object.fromEntries(entries));
 }
+
+function buildPDF(fonts){
+  const T = TESTS[state.test], R = state.result, top = T.types[R[0].key];
+  const doc = new jspdf.jsPDF({ unit:"mm", format:"a4", compress:true });
+  const W = 210, M = 18, CW = W - M*2;
+  const hex = h => [parseInt(h.slice(1,3),16), parseInt(h.slice(3,5),16), parseInt(h.slice(5,7),16)];
+  const C = { indigo:"#3D2BFF", indigoL:"#E9E7FF", yellow:"#FFB224", y60:"#FFD17C", y35:"#FFE4B2", cream:"#FFF1D6", ink:"#14121F", muted:"#6B6880", gray:"#F3F3F6", line:"#E4E3EC", white:"#FFFFFF" };
+  const fill = c => doc.setFillColor(...hex(c)), color = c => doc.setTextColor(...hex(c)), stroke = c => doc.setDrawColor(...hex(c));
+
+  // Shriftlar (yuklanmasa — Helvetica, apostroflar oddiy belgiga almashtiriladi)
+  let F;
+  if (fonts){
+    Object.entries(fonts).forEach(([k,b64])=>{ doc.addFileToVFS("PJS-"+k+".ttf", b64); doc.addFont("PJS-"+k+".ttf", "PJS-"+k, "normal"); });
+    F = w => doc.setFont("PJS-"+w, "normal");
+  } else {
+    F = w => doc.setFont("helvetica", ["B","XB","SB"].includes(w) ? "bold" : "normal");
+  }
+  const tx = s => fonts ? s : String(s).replace(/[‘’ʻʼ]/g,"'").replace(/[“”]/g,'"').replace(/—/g,"-").replace(/·/g,"-");
+  const text = (s, x, y, o) => doc.text(tx(s), x, y, o);
+  const wrap = (s, w) => doc.splitTextToSize(tx(s), w);
+  const LH = pt => pt * 0.3528 * 1.45;   // qator balandligi (mm)
+
+  // Logo (brendbukdagi o‘lchamlar)
+  function logo(x, y, s, body){
+    const P = pts => { const a = pts.map(([px,py])=>[x+px*s/100, y+py*s/100]); const d=[]; for(let i=1;i<a.length;i++) d.push([a[i][0]-a[i-1][0], a[i][1]-a[i-1][1]]); doc.lines(d, a[0][0], a[0][1], [1,1], "F", true); };
+    fill(body);
+    P([[0,0],[40,0],[40,14],[20.2,50],[40,85.8],[40,100],[0,100]]);
+    P([[54.4,0],[62.1,0],[77.2,47.7],[91.6,0],[100,0],[100,100],[54.4,100]]);
+    [[42.3,44.9,9.8,10,C.yellow],[43,61.9,8.2,8.1,C.y60],[44.2,75.8,5.9,6.1,C.y35]].forEach(([qx,qy,qw,qh,c])=>{ fill(c); doc.rect(x+qx*s/100, y+qy*s/100, qw*s/100, qh*s/100, "F"); });
+  }
+
+  // ===== 1. Sarlavha bandi =====
+  fill(C.indigo); doc.rect(0, 0, W, 40, "F");
+  doc.setGState(new doc.GState({ opacity: 0.12 })); logo(150, -26, 66, C.white); doc.setGState(new doc.GState({ opacity: 1 }));
+  logo(M, 12, 15, C.white);
+  color(C.white); F("XB"); doc.setFontSize(12.5);
+  text("Komronbek", M+20, 18.2); text("Mullajonov", M+20, 23.6);
+  F("M"); doc.setFontSize(8.5); doc.setTextColor(214, 210, 255);
+  text("O‘ZINGIZNI TANING", M+20, 29.6);
+  const d = new Date(), p2 = n => String(n).padStart(2,"0");
+  color(C.white); F("B"); doc.setFontSize(11); text(T.title + " testi", W-M, 19.5, { align:"right" });
+  F("R"); doc.setFontSize(9); doc.setTextColor(214, 210, 255);
+  text("Shaxsiy hisobot · " + p2(d.getDate())+"."+p2(d.getMonth()+1)+"."+d.getFullYear(), W-M, 25, { align:"right" });
+
+  let y = 54;
+  // ===== 2. Ism =====
+  color(C.muted); F("M"); doc.setFontSize(9); text("Hisobot egasi", M, y);
+  color(C.ink); F("XB"); let ns = 24; doc.setFontSize(ns); while (doc.getTextWidth(tx(state.lead.name)) > CW && ns > 12){ ns -= 1; doc.setFontSize(ns); } text(state.lead.name, M, y+9.5);
+  y += 17;
+
+  // ===== 3. Asosiy natija =====
+  fill(C.ink); doc.roundedRect(M, y, CW, 30, 4, 4, "F");
+  fill(C.indigo); doc.roundedRect(M, y, 4, 30, 2, 2, "F"); doc.rect(M+2, y, 2, 30, "F");
+  color(C.yellow); F("XB"); doc.setFontSize(38); text(R[0].pct + "%", M+12, y+20.5);
+  const px = M + 12 + doc.getTextWidth(R[0].pct + "%") + 10;
+  doc.setTextColor(180, 176, 200); F("M"); doc.setFontSize(9); text("Sizga eng yaqin tur", px, y+9);
+  color(C.white); F("XB"); doc.setFontSize(20); text(top.name, px, y+17.5);
+  doc.setTextColor(210, 206, 228); F("R"); doc.setFontSize(9.5); text(top.tag, px, y+24);
+  y += 30 + 8;
+
+  // Tavsif
+  color("#3B3848"); F("R"); doc.setFontSize(10.5);
+  const desc = wrap(top.desc, CW); text(desc, M, y); y += desc.length * LH(10.5) + 4;
+
+  // ===== 4. Aralashma =====
+  color(C.ink); F("B"); doc.setFontSize(12.5); text("Sizning aralashmangiz", M, y);
+  color(C.muted); F("R"); doc.setFontSize(8.5); text("Foizlar daraja emas — javoblaringiz qaysi turga ko‘proq to‘g‘ri kelganini ko‘rsatadi", M, y+5.2);
+  y += 11;
+  const BAR = [C.indigo, C.yellow, C.ink, "#9C93FF"], labW = 44, pctW = 12, trackW = CW - labW - pctW;
+  R.forEach((r,i)=>{
+    color(C.ink); F(i===0 ? "B" : "M"); doc.setFontSize(10); text(T.types[r.key].name, M, y+3.3);
+    fill(C.gray); doc.roundedRect(M+labW, y, trackW, 4.4, 2.2, 2.2, "F");
+    if (r.pct > 0){ fill(BAR[i]); doc.roundedRect(M+labW, y, Math.max(trackW * r.pct/100, 4.4), 4.4, 2.2, 2.2, "F"); }
+    F("B"); doc.setFontSize(10); text(r.pct + "%", W-M, y+3.4, { align:"right" });
+    y += 7.6;
+  });
+  y += 3;
+
+  // ===== 5. Kuchli tomonlar / maslahatlar =====
+  const colW = (CW - 6) / 2, pad = 6, inner = colW - pad*2 - 5;
+  F("R"); doc.setFontSize(9.8);
+  const sL = top.strong.map(s => wrap(s, inner)), tL = top.tips.map(s => wrap(s, inner));
+  const listH = arr => arr.reduce((h,l)=> h + l.length * LH(9.8) + 2.2, 0);
+  const boxH = Math.max(listH(sL), listH(tL)) + 16;
+  [[M, "Kuchli tomonlaringiz", sL, C.indigo], [M+colW+6, "Sizga foydali maslahatlar", tL, C.yellow]].forEach(([bx, title, items, dot])=>{
+    fill(C.gray); doc.roundedRect(bx, y, colW, boxH, 3.5, 3.5, "F");
+    color(C.ink); F("B"); doc.setFontSize(10.8); text(title, bx+pad, y+9);
+    let iy = y + 16; F("R"); doc.setFontSize(9.8); color("#3B3848");
+    items.forEach(l => { fill(dot); doc.rect(bx+pad, iy-2.3, 2.2, 2.2, "F"); text(l, bx+pad+5, iy); iy += l.length * LH(9.8) + 2.2; });
+  });
+  y += boxH + 5;
+
+  // ===== 6. 2- va 3-turlar (yonma-yon, joy yetganicha) =====
+  const footY = 284, cH = 15, nH = 13, cY = footY - 6 - cH, nY = cY - 3 - nH;
+  const others = R.slice(1, 3).filter(r => r.pct > 0);
+  if (others.length){
+    const gap = 6, bw = others.length === 2 ? (CW - 12 - gap) / 2 : CW - 12;
+    F("R"); doc.setFontSize(9.2);
+    const bl = others.map(r => ({ r, l: wrap(T.types[r.key].desc, bw) }));
+    const oh = 16.4 + (Math.max(...bl.map(b => b.l.length)) - 1) * LH(9.2) + 4.5;
+    if (y + oh <= nY - 3){
+      stroke(C.line); doc.setLineWidth(0.3); doc.roundedRect(M, y, CW, oh, 3.5, 3.5, "S");
+      bl.forEach((b, i) => {
+        const bx = M + 6 + i * (bw + gap);
+        color(C.muted); F("M"); doc.setFontSize(8); text(i === 0 ? "2-YAQIN TUR" : "3-YAQIN TUR", bx, y + 6.2);
+        color(C.ink); F("B"); doc.setFontSize(10.2); text(T.types[b.r.key].name + " · " + b.r.pct + "%", bx, y + 11.3);
+        color("#3B3848"); F("R"); doc.setFontSize(9.2); text(b.l, bx, y + 16.4);
+      });
+      if (bl.length === 2){ stroke(C.line); doc.line(M + 6 + bw + gap/2, y + 4, M + 6 + bw + gap/2, y + oh - 4); }
+      y += oh + 5;
+    }
+  }
+
+  // ===== 7. Muhim eslatma + kontakt (sahifa pastiga yopishadi) =====
+  fill(C.cream); doc.roundedRect(M, nY, CW, nH, 3.5, 3.5, "F");
+  color(C.ink); F("B"); doc.setFontSize(8.6); text("Muhim:", M+6, nY+5.6);
+  color("#3B3848"); F("R"); doc.setFontSize(8.3);
+  text(wrap("bu test tashxis emas va hech qanday daraja yoki muammoni o‘lchamaydi. Natija javoblaringiz asosida tuzilgan. Agar biror narsa uzoq vaqt sizni bezovta qilayotgan bo‘lsa, psixolog bilan gaplashing.", CW - 12 - 13), M+6+13, nY+5.6);
+
+  fill(C.indigoL); doc.roundedRect(M, cY, CW, cH, 3.5, 3.5, "F");
+  color(C.ink); F("B"); doc.setFontSize(10); text("Savollaringiz bo‘lsa, yozing", M+6, cY+6.2);
+  F("SB"); doc.setFontSize(9.5); color(C.indigo);
+  const tg = CONFIG.telegram.replace(/^@/, ""), tel = CONFIG.phone.replace(/[^\d+]/g, "");
+  doc.textWithLink(tx("Telegram: " + CONFIG.telegram), M+6, cY+11.6, { url: "https://t.me/" + tg });
+  doc.textWithLink(tx("Tel: " + CONFIG.phone), M+6+70, cY+11.6, { url: "tel:" + tel });
+
+  // Pastki qator
+  stroke(C.line); doc.setLineWidth(0.3); doc.line(M, footY, W-M, footY);
+  color(C.ink); F("B"); doc.setFontSize(8.5); text("Komronbek Mullajonov", M, footY+5.5);
+  color(C.muted); F("R"); doc.setFontSize(8.5);
+  const site = /^https?:/.test(location.protocol) ? location.host + location.pathname.replace(/index\.html$/,"") : "";
+  if (site) doc.textWithLink(tx(site.replace(/\/$/,"")), W-M, footY+5.5, { url: location.origin + location.pathname, align:"right" });
+  else text("Natija testdagi javoblaringiz asosida tuzildi", W-M, footY+5.5, { align:"right" });
+
+  doc.setProperties({ title: T.title + " — " + state.lead.name, author: "Komronbek Mullajonov", subject: "Psixologik test natijasi" });
+  return doc;
+}
+
 async function downloadPDF(){
   if (!state.result || !state.lead) return;
-  const btn=$("#pdfBtn"); btn.disabled=true;
+  const btn = $("#pdfBtn"); btn.disabled = true;
   try{
-    fillReport();
-    await document.fonts.ready;
-    const canvas = await html2canvas($("#report"),{scale:2,backgroundColor:"#ffffff",useCORS:true});
-    const pdf = new jspdf.jsPDF({unit:"mm",format:"a4"});
-    pdf.addImage(canvas.toDataURL("image/jpeg",0.95),"JPEG",0,0,210,297);
-    pdf.save((TESTS[state.test].title+"_"+state.lead.name).replace(/[^\p{L}\p{N}]+/gu,"_")+".pdf");
+    let fonts = null;
+    try { fonts = await loadPdfFonts(); } catch(e){ console.warn("Shrift yuklanmadi, oddiy shrift ishlatiladi", e); }
+    const doc = buildPDF(fonts);
+    doc.save((TESTS[state.test].title+"_"+state.lead.name).replace(/[^\p{L}\p{N}]+/gu,"_")+".pdf");
     toast("PDF yuklab olindi");
   }catch(err){ console.error(err); toast("PDF yaratib bo‘lmadi. Qayta urinib ko‘ring."); }
-  btn.disabled=false;
+  btn.disabled = false;
 }
+
 $("#pdfBtn").onclick = downloadPDF;
 
 /* ---------- Bosh sahifa / havola orqali kirish ---------- */
