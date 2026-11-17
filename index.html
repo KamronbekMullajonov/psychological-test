@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O‘zingizni taning — Komronbek Mullajonov</title>
+<meta name="description" content="3 ta qisqa psixologik test: temperament, muloqot uslubi va energiya manbai. Bepul, 3 daqiqa.">
+<meta name="theme-color" content="#3D2BFF">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%233D2BFF' d='M0 0h40v14L20.2 50 40 85.8V100H0zM54.4 0h7.7l15.1 47.7L91.6 0h8.4v100H54.4z'/%3E%3Cpath fill='%23FFB224' d='M42.3 44.9h9.8v10h-9.8z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+  /* ===== Brend ranglari (brendbukdan) ===== */
+  :root{
+    --indigo:#3D2BFF; --indigo-2:#6A5CFF; --indigo-l:#E9E7FF;
+    --yellow:#FFB224; --yellow-60:#FFD17C; --yellow-35:#FFE4B2; --cream:#FFF1D6;
+    --ink:#14121F; --white:#FFFFFF; --gray:#F3F3F6; --muted:#5E5B6E; --line:#E4E3EC;
+    --r:20px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:"Plus Jakarta Sans",system-ui,sans-serif;background:var(--white);color:var(--ink);font-size:18px;line-height:28px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  h1,h2,h3{letter-spacing:-.02em}
+  button{font-family:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+  .narrow{max-width:720px}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);cursor:pointer;background:none;border:0}
+  .brand svg{width:34px;height:34px}
+  .brand b{font-size:15px;line-height:17px;font-weight:800;text-align:left;letter-spacing:-.02em}
+  .crumb{font-size:14px;line-height:20px;font-weight:500;color:var(--muted)}
+
+  .screen{display:none}
+  .screen.active{display:block;animation:in .45s cubic-bezier(.2,.7,.2,1)}
+  @keyframes in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+  /* ===== HERO ===== */
+  .hero{position:relative;overflow:hidden;padding:72px 0 64px}
+  .hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;line-height:20px;font-weight:600;color:var(--indigo);background:var(--indigo-l);padding:6px 14px;border-radius:99px;margin-bottom:22px}
+  .eyebrow i{width:8px;height:8px;background:var(--yellow);display:block}
+  .hero h1{font-size:clamp(40px,6vw,64px);line-height:1.1;font-weight:800;margin-bottom:20px}
+  .hero h1 span{color:var(--indigo)}
+  .hero p{color:var(--muted);max-width:520px;margin-bottom:30px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--indigo);color:#fff;border:0;border-radius:14px;padding:16px 26px;font-size:16px;line-height:20px;font-weight:700;cursor:pointer;text-decoration:none;transition:transform .15s,box-shadow .2s,background .2s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(61,43,255,.6)}
+  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+  .btn.ghost{background:var(--white);color:var(--ink);border:1.5px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--indigo);box-shadow:none}
+  .btn.block{width:100%}
+
+  /* Katta logo — interaktiv darvoza */
+  .gate-art{position:relative;aspect-ratio:1/1;max-width:400px;justify-self:end;width:100%}
+  .gate-art svg{width:100%;height:100%;overflow:visible}
+  .gate-art .k,.gate-art .m{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+  .gate-art:hover .k{transform:translateX(-4px)}
+  .gate-art:hover .m{transform:translateX(4px)}
+  .sq{animation:walk 3.2s ease-in-out infinite}
+  .sq.s2{animation-delay:.25s}.sq.s3{animation-delay:.5s}
+  @keyframes walk{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  .gate-hint{position:absolute;right:0;bottom:-6px;font-size:13px;line-height:18px;color:var(--muted);font-weight:500}
+
+  /* ===== Bo'limlar ===== */
+  .sec{padding:56px 0}
+  .sec.gray{background:var(--gray)}
+  .sec h2{font-size:clamp(28px,4vw,32px);line-height:40px;font-weight:700;margin-bottom:10px}
+  .sec .sub{color:var(--muted);margin-bottom:32px;max-width:620px}
+  .tests{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .tcard{position:relative;overflow:hidden;background:var(--white);border:1.5px solid var(--line);border-radius:var(--r);padding:28px 26px 26px;text-align:left;cursor:pointer;display:flex;flex-direction:column;min-height:330px;transition:transform .25s,border-color .25s,box-shadow .25s}
+  .tcard:hover{transform:translateY(-6px);border-color:var(--indigo);box-shadow:0 22px 40px -24px rgba(61,43,255,.45)}
+  .tcard .ic{width:52px;height:52px;border-radius:14px;background:var(--indigo-l);display:grid;place-items:center;margin-bottom:22px;transition:background .25s}
+  .tcard:hover .ic{background:var(--indigo)}
+  .tcard:hover .ic svg{stroke:#fff}
+  .tcard .ic svg{width:26px;height:26px;stroke:var(--indigo);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .25s}
+  .tcard .n{font-size:14px;line-height:20px;font-weight:600;color:var(--indigo);margin-bottom:6px}
+  .tcard h3{font-size:24px;line-height:32px;font-weight:700;margin-bottom:10px}
+  .tcard p{font-size:16px;line-height:24px;color:var(--muted);flex:1}
+  .tcard .meta{display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:18px;border-top:1px solid var(--line);font-size:14px;line-height:20px;font-weight:600}
+  .tcard .meta .go{color:var(--indigo);display:flex;align-items:center;gap:6px;transition:gap .2s}
+  .tcard:hover .meta .go{gap:12px}
+  .tcard .done{position:absolute;top:30px;right:22px;z-index:1;font-size:12px;line-height:16px;font-weight:700;background:var(--cream);color:var(--ink);padding:5px 10px;border-radius:99px;display:none}
+  .tcard.is-done .done{display:block}
+  .tcard .corner{position:absolute;right:-22px;top:-22px;width:84px;height:84px;opacity:.07;transition:opacity .3s,transform .4s}
+  .tcard:hover .corner{opacity:.14;transform:rotate(-6deg) scale(1.08)}
+
+  .notice{display:grid;grid-template-columns:auto 1fr;gap:18px;background:var(--cream);border-radius:var(--r);padding:26px 28px;margin-top:28px}
+  .notice .ni{width:44px;height:44px;border-radius:12px;background:var(--white);display:grid;place-items:center}
+  .notice .ni svg{width:24px;height:24px;stroke:var(--indigo);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .notice h3{font-size:18px;line-height:26px;font-weight:700;margin-bottom:6px}
+  .notice p{font-size:16px;line-height:24px;color:#3b3848}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .step{background:var(--white);border-radius:var(--r);padding:24px}
+  .step .num{display:flex;gap:4px;margin-bottom:16px;align-items:flex-end}
+  .step .num i{display:block;width:12px;background:var(--indigo)}
+  .step .num i.y{background:var(--yellow)}
+  .step h3{font-size:18px;line-height:26px;font-weight:700;margin-bottom:6px}
+  .step p{font-size:16px;line-height:24px;color:var(--muted)}
+
+  /* ===== TEST ===== */
+  .quiz{padding:40px 0 72px}
+  .qtop{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:12px}
+  .back{background:none;border:0;font-size:14px;line-height:20px;font-weight:600;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px;padding:6px 0}
+  .back:hover{color:var(--indigo)}
+  .qname{font-size:14px;line-height:20px;font-weight:600;color:var(--indigo)}
+  /* zinapoya ko'rinishidagi progress (brend "Steps" shakli) */
+  .path{display:flex;gap:6px;align-items:flex-end;height:46px;margin-bottom:34px}
+  .path .c{flex:1;background:var(--gray);border-radius:4px 4px 0 0;position:relative;transition:background .35s,height .35s}
+  .path .c.f{background:var(--indigo)}
+  .path .c.now{background:var(--indigo-l)}
+  .path .c.now::after{content:"";position:absolute;left:50%;top:-14px;width:10px;height:10px;margin-left:-5px;background:var(--yellow);animation:walk 1.6s ease-in-out infinite}
+  .qcount{font-size:14px;line-height:20px;font-weight:600;color:var(--muted);margin-bottom:10px}
+  .qtext{font-size:clamp(24px,4vw,32px);line-height:1.25;font-weight:700;letter-spacing:-.02em;margin-bottom:28px}
+  .opts{display:grid;gap:12px}
+  .opt{display:flex;align-items:center;gap:16px;width:100%;text-align:left;background:var(--white);border:1.5px solid var(--line);border-radius:16px;padding:18px 20px;font-size:17px;line-height:24px;font-weight:500;color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s,transform .15s;opacity:0;animation:opt .4s forwards}
+  @keyframes opt{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
+  .opt:hover{border-color:var(--indigo);transform:translateX(4px)}
+  .opt .k{flex:none;width:32px;height:32px;border-radius:9px;background:var(--gray);display:grid;place-items:center;font-size:14px;font-weight:700;color:var(--muted);transition:background .15s,color .15s}
+  .opt.sel{border-color:var(--indigo);background:var(--indigo-l)}
+  .opt.sel .k{background:var(--indigo);color:#fff}
+  .qhint{font-size:14px;line-height:20px;color:var(--muted);margin-top:22px;text-align:center}
+  .qhint kbd{font-family:inherit;font-weight:700;background:var(--gray);padding:1px 7px;border-radius:5px}
+
+  /* ===== FORMA ===== */
+  .lead{padding:48px 0 72px}
+  .card{background:var(--white);border:1.5px solid var(--line);border-radius:24px;padding:36px}
+  .ready{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .ready .tick{width:44px;height:44px;border-radius:12px;background:var(--indigo);display:grid;place-items:center}
+  .ready .tick svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  .card h2{font-size:32px;line-height:40px;font-weight:700}
+  .card > p{color:var(--muted);margin-bottom:26px}
+  .peek{display:flex;gap:6px;margin-bottom:26px;filter:blur(5px);user-select:none;pointer-events:none}
+  .peek i{display:block;height:12px;border-radius:99px;background:var(--indigo)}
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:14px;line-height:20px;font-weight:600;margin-bottom:6px}
+  .field input,.field select{width:100%;border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;font:500 16px/22px "Plus Jakarta Sans",sans-serif;background:#fff;color:var(--ink);outline:none;transition:border-color .15s}
+  .field input:focus,.field select:focus{border-color:var(--indigo)}
+  .phone{display:flex;border:1.5px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .15s}
+  .phone:focus-within{border-color:var(--indigo)}
+  .phone span{padding:14px 12px 14px 16px;background:var(--gray);font-weight:600;font-size:16px;line-height:22px;color:var(--muted)}
+  .phone input{border:0;border-radius:0}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .err{font-size:14px;line-height:20px;color:#C2261B;margin-top:6px;display:none}
+  .field.bad .err{display:block}
+  .field.bad input,.field.bad .phone{border-color:#C2261B}
+  .check{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:20px;color:var(--muted);margin:6px 0 20px;cursor:pointer}
+  .check input{width:18px;height:18px;accent-color:var(--indigo);margin-top:1px;flex:none}
+  .check.bad{color:#C2261B}
+
+  /* ===== NATIJA ===== */
+  .result{padding:40px 0 80px}
+  .rhero{position:relative;overflow:hidden;background:linear-gradient(160deg,var(--indigo),var(--indigo-2));color:#fff;border-radius:28px;padding:40px}
+  .rhero small{font-size:14px;line-height:20px;font-weight:600;opacity:.85}
+  .rhero h2{font-size:clamp(36px,6vw,56px);line-height:1.1;font-weight:800;margin:8px 0 10px}
+  .rhero .tag{font-size:20px;line-height:28px;font-weight:600;margin-bottom:14px}
+  .rhero p{opacity:.92;max-width:560px}
+  .rhero .big{position:absolute;right:-30px;top:-20px;width:220px;opacity:.14}
+  .mix{margin-top:18px}
+  .mixbar{display:flex;height:22px;border-radius:99px;overflow:hidden;background:var(--gray);margin:14px 0 18px}
+  .mixbar i{display:block;height:100%;width:0;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+  .legend{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .lg{display:flex;align-items:center;gap:12px;background:var(--gray);border-radius:14px;padding:12px 14px;cursor:pointer;border:1.5px solid transparent;transition:border-color .2s,background .2s;text-align:left;font-size:16px;line-height:22px;color:var(--ink)}
+  .lg:hover,.lg.on{border-color:var(--indigo);background:var(--white)}
+  .lg .dot{width:14px;height:14px;border-radius:4px;flex:none}
+  .lg b{flex:1;font-weight:600}
+  .lg .p{font-weight:800;font-size:18px}
+  .tinfo{margin-top:14px;background:var(--indigo-l);border-radius:16px;padding:16px 18px;font-size:16px;line-height:24px;display:none}
+  .tinfo.on{display:block;animation:in .3s}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+  .two .card{padding:26px}
+  .two h3{font-size:18px;line-height:26px;font-weight:700;margin-bottom:12px}
+  .two ul{list-style:none;display:grid;gap:10px}
+  .two li{position:relative;padding-left:22px;font-size:16px;line-height:24px;color:#3b3848}
+  .two li::before{content:"";position:absolute;left:0;top:8px;width:9px;height:9px;background:var(--indigo)}
+  .two .tips li::before{background:var(--yellow)}
+  .soft{margin-top:16px;font-size:15px;line-height:22px;color:var(--muted);background:var(--gray);border-radius:16px;padding:16px 18px}
+  .ract{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+  .more > h3{font-size:24px;line-height:32px;font-weight:600;margin:44px 0 16px}
+  .more .tests{grid-template-columns:repeat(2,1fr)}
+  .more .tcard{min-height:0}
+
+  footer{border-top:1px solid var(--line);padding:28px 0}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;font-size:14px;line-height:20px;color:var(--muted)}
+
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(120px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;line-height:20px;font-weight:600;transition:transform .35s;z-index:50}
+  .toast.on{transform:translateX(-50%) translateY(0)}
+
+  /* ===== PDF shabloni (ekranda ko'rinmaydi) ===== */
+  #report{position:fixed;left:-10000px;top:0;width:794px;height:1123px;background:#fff;color:var(--ink);font-family:"Plus Jakarta Sans",sans-serif;display:flex;flex-direction:column}
+  #report .h{background:linear-gradient(160deg,#3D2BFF,#6A5CFF);color:#fff;padding:26px 48px;display:flex;justify-content:space-between;align-items:center}
+  #report .h .lg2{display:flex;align-items:center;gap:12px}
+  #report .h svg{width:40px;height:40px}
+  #report .h b{font-size:16px;line-height:18px;font-weight:800}
+  #report .h .m{text-align:right;font-size:13px;line-height:19px;font-weight:600}
+  #report .b{padding:28px 48px 24px;flex:1;overflow:hidden;display:flex;flex-direction:column}
+  #report .lb{font-size:13px;line-height:18px;color:var(--muted)}
+  #report .nm{font-size:30px;line-height:38px;font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+  #report .hero2{background:var(--ink);color:#fff;padding:22px 28px;display:flex;gap:24px;align-items:center;border-radius:14px}
+  #report .pc{font-size:54px;line-height:1;font-weight:800;color:var(--yellow);letter-spacing:-.03em}
+  #report .hero2 small{font-size:13px;opacity:.75}
+  #report .hero2 h2{font-size:28px;line-height:34px;margin:2px 0 4px}
+  #report .hero2 p{font-size:13px;line-height:19px;opacity:.85}
+  #report h4{font-size:16px;line-height:22px;margin:22px 0 10px}
+  #report .mb{display:flex;height:16px;border-radius:99px;overflow:hidden;margin-bottom:12px}
+  #report .mb i{display:block;height:100%}
+  #report .lgd{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;font-size:13px;line-height:18px}
+  #report .lgd div{display:flex;align-items:center;gap:8px}
+  #report .lgd span.d{width:11px;height:11px;border-radius:3px}
+  #report .lgd b{margin-left:auto}
+  #report .bx2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+  #report .bx{background:var(--gray);padding:16px 18px;border-radius:12px}
+  #report .bx h5{font-size:14px;line-height:20px;margin-bottom:8px}
+  #report .bx ul{list-style:none;display:grid;gap:8px;font-size:13.5px;line-height:20px}
+  #report .bx li{padding-left:15px;position:relative}
+  #report .bx li::before{content:"";position:absolute;left:0;top:5px;width:7px;height:7px;background:var(--indigo)}
+  #report .bx.y li::before{background:var(--yellow)}
+  #report .desc{font-size:15px;line-height:23px;color:#3b3848;margin-top:14px}
+  #report .sec2{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:14px;font-size:13.5px;line-height:20px;color:#3b3848}
+  #report .sec2 h5{font-size:14px;line-height:20px;color:var(--ink);margin-bottom:6px}
+  #report .sec2 p+h5{margin-top:12px}
+  #report .nt{background:var(--cream);padding:14px 18px;border-radius:12px;margin-top:14px;font-size:12px;line-height:18px;color:#3b3848}
+  #report .nt b{color:var(--ink)}
+  #report .nx{background:var(--indigo-l);padding:14px 18px;border-radius:12px;margin-top:auto}
+  #report .nx h5{font-size:14px;line-height:20px;margin-bottom:4px}
+  #report .nx .c{display:flex;gap:24px;font-size:13px;line-height:18px;font-weight:700;margin-top:6px}
+  #report .f{flex:none;border-top:1px solid var(--line);margin:0 48px;padding:12px 0 20px;display:flex;justify-content:space-between;font-size:12px;line-height:16px;color:var(--muted)}
+
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr}
+    .gate-art{max-width:240px;justify-self:start;order:-1}
+    .gate-hint{display:none}
+    .tests,.steps{grid-template-columns:1fr}
+    .tcard{min-height:0}
+  }
+  @media (max-width:600px){
+    body{font-size:16px;line-height:26px}
+    .hero{padding:40px 0 48px}
+    .card,.rhero{padding:24px}
+    .two,.legend,.row2,.more .tests{grid-template-columns:1fr}
+    .crumb{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<!-- Logo belgisi (brendbukdagi o'lchamlar asosida) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 100 100">
+      <path d="M0 0h40v14L20.2 50 40 85.8V100H0z" fill="var(--mk,#3D2BFF)"/>
+      <path d="M54.4 0h7.7l15.1 47.7L91.6 0H100v100H54.4z" fill="var(--mk,#3D2BFF)"/>
+      <rect x="42.3" y="44.9" width="9.8" height="10" fill="#FFB224"/>
+      <rect x="43" y="61.9" width="8.2" height="8.1" fill="#FFD17C"/>
+      <rect x="44.2" y="75.8" width="5.9" height="6.1" fill="#FFE4B2"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header>
+  <div class="wrap">
+    <button class="brand" onclick="goHome()" aria-label="Bosh sahifa">
+      <svg><use href="#mark"/></svg>
+      <b>Komronbek<br>Mullajonov</b>
+    </button>
+    <div class="crumb" id="crumb">Psixologik testlar</div>
+  </div>
+</header>
+
+<!-- ============ 1. BOSH SAHIFA: BO'LIMLAR ============ -->
+<section class="screen active" id="s-home">
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow"><i></i>Bepul · 3 ta test · har biri 3 daqiqa</div>
+        <h1>O‘zingizni <span>yaxshiroq</span> taning</h1>
+        <p>Uchta qisqa test bor. Qaysi biri sizga qiziq bo‘lsa, shuni tanlang. To‘g‘ri yoki noto‘g‘ri javob yo‘q. Har bir natija sizning kuchli tomonlaringizni ko‘rsatadi.</p>
+        <a class="btn" href="#tests" onclick="event.preventDefault();document.getElementById('tests').scrollIntoView({behavior:'smooth'})">Testni tanlash
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </a>
+      </div>
+      <div class="gate-art" id="gateArt" aria-hidden="true">
+        <svg viewBox="0 0 100 100">
+          <path class="k" d="M0 0h40v14L20.2 50 40 85.8V100H0z" fill="#3D2BFF"/>
+          <path class="m" d="M54.4 0h7.7l15.1 47.7L91.6 0H100v100H54.4z" fill="#3D2BFF"/>
+          <g id="gsq">
+            <rect class="sq" x="42.3" y="44.9" width="9.8" height="10" fill="#FFB224"/>
+            <rect class="sq s2" x="43" y="61.9" width="8.2" height="8.1" fill="#FFD17C"/>
+            <rect class="sq s3" x="44.2" y="75.8" width="5.9" height="6.1" fill="#FFE4B2"/>
+          </g>
+        </svg>
+        <div class="gate-hint">Darvozadan o‘ting →</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec gray" id="tests">
+    <div class="wrap">
+      <h2>Qaysi testni topshirasiz?</h2>
+      <p class="sub">Bittasini tanlang. Tugatgach, qolganlarini ham topshirishingiz mumkin.</p>
+      <div class="tests" id="testCards"></div>
+
+      <div class="notice">
+        <div class="ni"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg></div>
+        <div>
+          <h3>Bu testlar tashxis emas</h3>
+          <p>Testlar hech qanday daraja yoki muammoni o‘lchamaydi va hech kimni “yaxshi” yoki “yomon” deb baholamaydi. Ular faqat o‘zingizni qanday his qilishingiz, muloqot qilishingiz va kuch olishingiz haqida o‘ylab ko‘rishga yordam beradi. Har bir tur o‘zicha qimmatli.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="wrap">
+      <h2>Qanday ishlaydi</h2>
+      <p class="sub">Uch qadam, jami 3–4 daqiqa.</p>
+      <div class="steps">
+        <div class="step"><div class="num"><i style="height:14px"></i><i class="y" style="height:14px"></i></div><h3>Testni tanlang</h3><p>Sizga qiziq bo‘lgan mavzuni bosing.</p></div>
+        <div class="step"><div class="num"><i style="height:14px"></i><i style="height:24px"></i><i class="y" style="height:24px"></i></div><h3>8 ta savolga javob bering</h3><p>Birinchi xayolingizga kelgan javobni tanlang.</p></div>
+        <div class="step"><div class="num"><i style="height:14px"></i><i style="height:24px"></i><i style="height:34px"></i><i class="y" style="height:34px"></i></div><h3>Natijani oling</h3><p>Natija ekranda chiqadi va PDF hisobot sifatida yuklanadi.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. TEST ============ -->
+<section class="screen" id="s-quiz">
+  <div class="wrap narrow quiz">
+    <div class="qtop">
+      <button class="back" id="qBack">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        <span id="qBackTxt">Bo‘limlarga</span>
+      </button>
+      <div class="qname" id="qName"></div>
+    </div>
+    <div class="path" id="qPath"></div>
+    <div class="qcount" id="qCount"></div>
+    <div class="qtext" id="qText"></div>
+    <div class="opts" id="qOpts"></div>
+    <div class="qhint">Klaviaturada <kbd>1</kbd>–<kbd>4</kbd> tugmalarini bossangiz ham bo‘ladi</div>
+  </div>
+</section>
+
+<!-- ============ 3. FORMA ============ -->
+<section class="screen" id="s-lead">
+  <div class="wrap narrow lead">
+    <div class="card">
+      <div class="ready">
+        <div class="tick"><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg></div>
+        <h2>Natijangiz tayyor</h2>
+      </div>
+      <p>Natijani ko‘rish va PDF hisobotni olish uchun ma’lumotlaringizni qoldiring.</p>
+      <div class="peek" id="peek"></div>
+      <form id="leadForm" novalidate>
+        <div class="field" id="f-name">
+          <label for="name">Ismingiz</label>
+          <input id="name" type="text" placeholder="Masalan: Aziz Karimov" autocomplete="name">
+          <div class="err">Ismingizni kiriting</div>
+        </div>
+        <div class="row2">
+          <div class="field" id="f-phone">
+            <label for="phone">Telefon raqamingiz</label>
+            <div class="phone"><span>+998</span><input id="phone" type="tel" inputmode="numeric" placeholder="90 123 45 67" autocomplete="tel-national"></div>
+            <div class="err">9 ta raqamni kiriting</div>
+          </div>
+          <div class="field">
+            <label for="age">Yoshingiz</label>
+            <select id="age">
+              <option value="">Tanlang</option>
+              <option>18–24</option><option>25–34</option><option>35–44</option><option>45+</option><option>18 dan kichik</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="tg">Telegram username (ixtiyoriy)</label>
+          <input id="tg" type="text" placeholder="@username">
+        </div>
+        <input type="text" id="hp" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+        <button class="btn block" type="submit" id="submitBtn" style="margin-top:8px">Natijani ko‘rish va PDF olish</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. NATIJA ============ -->
+<section class="screen" id="s-result">
+  <div class="wrap result">
+    <div class="rhero">
+      <svg class="big" style="--mk:#fff"><use href="#mark"/></svg>
+      <small id="rSmall"></small>
+      <h2 id="rTitle"></h2>
+      <div class="tag" id="rTag"></div>
+      <p id="rDesc"></p>
+    </div>
+
+    <div class="card mix">
+      <h3 style="font-size:24px;line-height:32px;font-weight:600">Sizning aralashmangiz</h3>
+      <p style="color:var(--muted);font-size:16px;line-height:24px;margin-top:4px">Har bir odamda bir nechta tur aralash bo‘ladi. Bu foizlar daraja emas, faqat javoblaringiz qaysi turga ko‘proq to‘g‘ri kelganini ko‘rsatadi. Har birini bosib, qisqacha tavsifini o‘qing.</p>
+      <div class="mixbar" id="rMix"></div>
+      <div class="legend" id="rLegend"></div>
+      <div class="tinfo" id="rInfo"></div>
+    </div>
+
+    <div class="two">
+      <div class="card"><h3>Kuchli tomonlaringiz</h3><ul id="rStrong"></ul></div>
+      <div class="card"><h3>Sizga foydali maslahatlar</h3><ul class="tips" id="rTips"></ul></div>
+    </div>
+
+    <div class="soft">Bu natija sizni to‘liq ta’riflamaydi va vaqt o‘tishi bilan o‘zgarishi mumkin. Agar biror narsa uzoq vaqt sizni bezovta qilayotgan bo‘lsa, psixolog bilan gaplashish foydali bo‘ladi.</div>
+
+    <div class="ract">
+      <button class="btn" id="pdfBtn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg>
+        PDF hisobotni yuklab olish
+      </button>
+      <button class="btn ghost" id="shareBtn">Do‘stga ulashish</button>
+      <button class="btn ghost" id="againBtn">Qayta topshirish</button>
+    </div>
+
+    <div class="more">
+      <h3>Boshqa testlarni ham topshiring</h3>
+      <div class="tests" id="moreCards"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© Komronbek Mullajonov</span>
+    <span>Testlar tashxis emas, o‘zingizni tanish uchun</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- PDF hisobot shabloni -->
+<div id="report">
+  <div class="h">
+    <div class="lg2"><svg viewBox="0 0 100 100" width="40" height="40"><path d="M0 0h40v14L20.2 50 40 85.8V100H0z" fill="#fff"/><path d="M54.4 0h7.7l15.1 47.7L91.6 0H100v100H54.4z" fill="#fff"/><rect x="42.3" y="44.9" width="9.8" height="10" fill="#FFB224"/><rect x="43" y="61.9" width="8.2" height="8.1" fill="#FFD17C"/><rect x="44.2" y="75.8" width="5.9" height="6.1" fill="#FFE4B2"/></svg><b>Komronbek<br>Mullajonov</b></div>
+    <div class="m"><span id="pTest"></span><br><span id="pDate"></span></div>
+  </div>
+  <div class="b">
+    <div class="lb">Ism</div>
+    <div class="nm" id="pName"></div>
+    <div class="hero2">
+      <div class="pc" id="pPct"></div>
+      <div><small>Sizga eng yaqin tur</small><h2 id="pTitle"></h2><p id="pTag"></p></div>
+    </div>
+    <div class="desc" id="pDesc"></div>
+    <h4>Sizning aralashmangiz</h4>
+    <div class="mb" id="pMix"></div>
+    <div class="lgd" id="pLgd"></div>
+    <div class="bx2">
+      <div class="bx"><h5>Kuchli tomonlaringiz</h5><ul id="pStrong"></ul></div>
+      <div class="bx y"><h5>Sizga foydali maslahatlar</h5><ul id="pTips"></ul></div>
+    </div>
+    <div class="sec2" id="pSec"></div>
+    <div class="nt"><b>Muhim:</b> bu test tashxis emas. U hech qanday daraja yoki muammoni o‘lchamaydi. Natija faqat javoblaringiz asosida tuzilgan va o‘zingizni yaxshiroq tanishga yordam beradi. Agar biror narsa uzoq vaqt sizni bezovta qilayotgan bo‘lsa, psixolog bilan gaplashing.</div>
+    <div class="nx">
+      <h5>Savollaringiz bo‘lsa, yozing</h5>
+      <div class="c"><span id="pTel"></span><span id="pTg"></span></div>
+    </div>
+  </div>
+  <div class="f"><b style="color:var(--ink)">Komronbek Mullajonov</b><span>Natija testdagi javoblaringiz asosida tuzildi</span></div>
+</div>
+
+<script>
+/* =====================================================================
+   1) SOZLAMALAR — faqat shu qismni o'zgartirasiz
+   ===================================================================== */
+const CONFIG = {
+  endpoint: "https://script.google.com/macros/s/AKfycbxecC9BfHoxz08tLiS1Y4Ds_cEgJpvvJdH6_zPkpX0sCpNwQqhiZYES1w1_M95br-LZOA/exec",   // Google Apps Script Web app URL (README.md)
+  phone: "+998 90 515 12 35",               // PDF va natijadagi kontakt
+  telegram: "@komronbekmullajonov",
+};
+
+/* Aralashma ranglari — brend palitrasidan */
+const COLORS = ["#3D2BFF", "#FFB224", "#14121F", "#9C93FF"];
+
+/* =====================================================================
+   2) TESTLAR
+   Har bir javob: ["matn", "tur_kaliti"]. Javoblar tartibi ekranda aralashtiriladi.
+   ===================================================================== */
+const TESTS = {
+  temperament: {
+    title: "Temperament",
+    q: "Siz qanday temperamentdasiz?",
+    card: "Yangi vaziyatlarga qanday javob berishingiz, qanchalik tez harakat qilishingiz va qanday dam olishingiz haqida.",
+    icon: '<circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/>',
+    types: {
+      sang: { name:"Sangvinik", tag:"Faol va quvnoq",
+        desc:"Siz odamlar orasida o‘zingizni erkin his qilasiz, yangilikni tez qabul qilasiz va atrofdagilarga kayfiyat berasiz.",
+        strong:["Yangi odamlar bilan tez til topishasiz","O‘zgarishlarga oson moslashasiz","Jamoaga yengillik va kayfiyat olib kirasiz"],
+        tips:["Boshlagan ishni oxiriga yetkazish uchun kichik bosqichlarga bo‘ling","Suhbatda ba’zan tinglashga ko‘proq vaqt bering"] },
+      xol:  { name:"Xolerik", tag:"Shijoatli va qat’iyatli",
+        desc:"Siz harakat odamisiz: maqsad qo‘yasiz, tez qaror qilasiz va boshqalarni ham orqangizdan ergashtirasiz.",
+        strong:["Tez qaror qabul qilasiz","Qiyin vazifadan qochmaysiz","Boshqalarni harakatga undaysiz"],
+        tips:["Muhim qaror oldidan bir oz to‘xtab, boshqalarning fikrini so‘rang","Dam olishni ham rejangizga kiriting"] },
+      fleg: { name:"Flegmatik", tag:"Xotirjam va barqaror",
+        desc:"Siz shoshilmaysiz, ishni bir maromda va ishonchli bajarasiz. Qiyin vaziyatda ham xotirjamligingizni saqlaysiz.",
+        strong:["Xotirjam va sabrli bo‘lasiz","Ishonchli: boshlagan ishni tugatasiz","Bahslarda muvozanat saqlaysiz"],
+        tips:["Fikringizni ertaroq va ochiqroq ayting — u muhim","Ba’zan yangi narsani sinab ko‘rish uchun kichik qadam qo‘ying"] },
+      mel:  { name:"Melanxolik", tag:"Chuqur va e’tiborli",
+        desc:"Siz narsalarni chuqur his qilasiz va puxta o‘ylaysiz. Detallarni boshqalar ko‘rmagan joyda ko‘rasiz.",
+        strong:["Detallarga e’tiborli bo‘lasiz","Boshqalarni chuqur tushunasiz","Ishni sifatli va puxta qilasiz"],
+        tips:["Har doim mukammal bo‘lishi shart emas — “yetarlicha yaxshi” ham natija","O‘zingizga yoqqan tinch vaqtni har kuni ajrating"] },
+    },
+    questions: [
+      { q:"Yangi jamoaga qo‘shildingiz. Birinchi kuni o‘zingizni qanday tutasiz?", a:[
+        ["Darhol hamma bilan tanishib chiqaman","sang"],["Tezda o‘z o‘rnimni topib, tashabbus ko‘rsataman","xol"],
+        ["Shoshilmay, avval atrofni kuzataman","fleg"],["Bir-ikki kishi bilan yaqinroq tanishaman","mel"]]},
+      { q:"Rejangiz to‘satdan o‘zgardi. Nima qilasiz?", a:[
+        ["Mayli, balki bundan ham qiziqroq bo‘lar","sang"],["Tezda yangi reja tuzib, harakatga o‘taman","xol"],
+        ["Xotirjam qabul qilaman, baribir hal bo‘ladi","fleg"],["Avval nima uchun o‘zgarganini o‘ylab ko‘raman","mel"]]},
+      { q:"Dam olish kunini qanday o‘tkazishni yoqtirasiz?", a:[
+        ["Do‘stlar bilan, odamlar ko‘p joyda","sang"],["Faol: sport, sayohat yoki yangi loyiha","xol"],
+        ["Uyda, tinch va shoshilmasdan","fleg"],["Kitob, film yoki yaqin bir kishi bilan suhbat","mel"]]},
+      { q:"Bahs bo‘lganda odatda qanday bo‘lasiz?", a:[
+        ["Hazil bilan vaziyatni yumshataman","sang"],["Fikrimni ochiq va qat’iy aytaman","xol"],
+        ["Hammani tinglab, o‘rtacha yechim izlayman","fleg"],["Har bir so‘zimni o‘ylab, ehtiyot bo‘lib gapiraman","mel"]]},
+      { q:"Ishni qanday tezlikda qilasiz?", a:[
+        ["Tez boshlayman, bir nechta ishni birga qilaman","sang"],["Tez va natijaga qarab ishlayman","xol"],
+        ["Bir maromda, shoshilmasdan","fleg"],["Puxta, har bir detalni tekshirib","mel"]]},
+      { q:"Sizni ko‘proq nima xursand qiladi?", a:[
+        ["Yangi tanishlar va qiziq voqealar","sang"],["Qiyin maqsadga erishish","xol"],
+        ["Tinchlik va hamma narsa joyida bo‘lishi","fleg"],["Ma’noli narsalar va samimiy munosabat","mel"]]},
+      { q:"Do‘stingiz maslahat so‘radi. Siz…", a:[
+        ["Avval uning kayfiyatini ko‘taraman","sang"],["Aniq qadamlarni aytaman","xol"],
+        ["Sabr bilan oxirigacha eshitaman","fleg"],["Uning nimani his qilayotganini tushunishga harakat qilaman","mel"]]},
+      { q:"Sizni qaysi so‘z yaxshiroq ta’riflaydi?", a:[
+        ["Quvnoq","sang"],["Shijoatli","xol"],["Xotirjam","fleg"],["Chuqur","mel"]]},
+    ],
+  },
+
+  muloqot: {
+    title: "Muloqot uslubi",
+    q: "Siz odamlar bilan qanday muloqot qilasiz?",
+    card: "Jamoada, ishda va kundalik hayotda qanday gapirishingiz, qaror qilishingiz va boshqalar bilan ishlashingiz haqida.",
+    icon: '<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/>',
+    types: {
+      dir: { name:"Yo‘naltiruvchi", tag:"Natijaga qaratilgan",
+        desc:"Siz qisqa va aniq gapirasiz, maqsadni ko‘rasiz va jamoani unga qarab olib borasiz.",
+        strong:["Gapingiz aniq va qisqa","Tez qaror qilasiz","Jamoani maqsad sari yo‘naltirasiz"],
+        tips:["Natija bilan birga odamlarning kayfiyatini ham so‘rang","Boshqalarga fikrini aytish uchun vaqt qoldiring"] },
+      ilh: { name:"Ilhomlantiruvchi", tag:"G‘oya va energiya",
+        desc:"Siz odamlarni g‘oya bilan yondirasiz. Gapingiz jonli, misollaringiz qiziq, atrofingizda doim kayfiyat bor.",
+        strong:["Odamlarni g‘oyaga qiziqtira olasiz","Muhitni jonlantirasiz","Yangi tanishlarga ochiqsiz"],
+        tips:["Kelishilgan narsalarni yozib qo‘ying","G‘oyadan keyin aniq keyingi qadamni belgilang"] },
+      qol: { name:"Qo‘llab-quvvatlovchi", tag:"Ishonch va g‘amxo‘rlik",
+        desc:"Siz yaxshi tinglovchisiz. Odamlar siz bilan o‘zini xavfsiz his qiladi, jamoada siz tufayli iliq muhit bo‘ladi.",
+        strong:["Diqqat bilan tinglaysiz","Jamoada ishonch yaratasiz","Har kimga yordam berishga tayyorsiz"],
+        tips:["Rozi bo‘lmasangiz, buni muloyim, lekin ochiq ayting","O‘zingizning ehtiyojlaringizni ham unutmang"] },
+      tah: { name:"Tahlilchi", tag:"Aniqlik va mantiq",
+        desc:"Siz gapirishdan oldin o‘ylaysiz, faktlarga tayanasiz va ishni to‘g‘ri qilishni xohlaysiz.",
+        strong:["Fikringiz asosli va mantiqiy","Xatolarni oldindan ko‘rasiz","Sifatga e’tibor berasiz"],
+        tips:["Har doim to‘liq ma’lumot kutish shart emas — ba’zan qisqa javob yetadi","Fikringizni oddiy misol bilan tushuntirib ko‘ring"] },
+    },
+    questions: [
+      { q:"Jamoa uchrashuvida siz odatda…", a:[
+        ["Gapni natijaga olib boraman","dir"],["Yangi g‘oyalar aytib, muhitni jonlantiraman","ilh"],
+        ["Hammaning fikri eshitilishiga e’tibor beraman","qol"],["Fakt va raqamlarni tekshiraman","tah"]]},
+      { q:"Sizga xabarni qanday yetkazishsa yoqadi?", a:[
+        ["Qisqa va aniq","dir"],["Jonli, misollar bilan","ilh"],["Samimiy va xotirjam","qol"],["Batafsil, hamma tafsiloti bilan","tah"]]},
+      { q:"Kimdir bilan fikringiz to‘g‘ri kelmadi. Siz…", a:[
+        ["Masalani darhol hal qilishga intilaman","dir"],["Gaplashib, kayfiyatni tiklayman","ilh"],
+        ["Munosabat buzilmasligini o‘ylayman","qol"],["Dalillar bilan kim haqligini aniqlayman","tah"]]},
+      { q:"Qaror qabul qilishda…", a:[
+        ["Tez qaror qilaman","dir"],["Ichki sezgim va odamlar fikriga tayanaman","ilh"],
+        ["Hamma rozi bo‘ladigan yo‘lni tanlayman","qol"],["Hamma variantni solishtirib chiqaman","tah"]]},
+      { q:"Sizni nima ko‘proq ruhlantiradi?", a:[
+        ["Natija va g‘alaba","dir"],["E’tirof va maqtov","ilh"],["Jamoadagi iliq munosabat","qol"],["Ishni sifatli va to‘g‘ri qilish","tah"]]},
+      { q:"Yangi loyiha boshlanmoqda. Siz birinchi bo‘lib…", a:[
+        ["Maqsad va muddatni belgilayman","dir"],["Jamoani loyihaga qiziqtiraman","ilh"],
+        ["Kimga yordam kerakligini so‘rayman","qol"],["Reja va tartib tuzaman","tah"]]},
+      { q:"Ish ko‘p bo‘lgan kunda siz…", a:[
+        ["Tezlashib, hammasini nazoratga olaman","dir"],["Hazil bilan muhitni yengillashtiraman","ilh"],
+        ["Jimgina ishimni davom ettiraman","qol"],["Ro‘yxat tuzib, birma-bir bajaraman","tah"]]},
+      { q:"Hamkasblaringiz sizni qanday ta’riflaydi?", a:[
+        ["Qat’iyatli","dir"],["Ilhom beruvchi","ilh"],["Ishonchli","qol"],["Aniq va puxta","tah"]]},
+    ],
+  },
+
+  energiya: {
+    title: "Energiya manbai",
+    q: "Sizga nima kuch beradi?",
+    card: "Charchaganda sizni nima tiklashi, qanday muhitda o‘zingizni yaxshi his qilishingiz va kuchingizni qayerdan olishingiz haqida.",
+    icon: '<path d="M13 2L4 14h7l-1 8 9-12h-7z"/>',
+    types: {
+      odam: { name:"Odamlar orqali", tag:"Muloqotdan kuch olasiz",
+        desc:"Sizni yaxshi suhbat, yaqinlaringiz va birga qilingan ishlar to‘ldiradi. Odamlar orasida energiyangiz oshadi.",
+        strong:["Odamlar bilan oson bog‘lanasiz","Birga ishlashda kuchlisiz","Boshqalarga ham energiya berasiz"],
+        tips:["Haftada kamida bir marta yaqinlaringiz bilan uchrashuv rejalashtiring","Charchaganda yolg‘iz qolish o‘rniga kimgadir qo‘ng‘iroq qiling"] },
+      tinch: { name:"Tinchlik orqali", tag:"Sukunatdan kuch olasiz",
+        desc:"Sizni jim, tinch vaqt va o‘z o‘ylaringiz bilan qolish tiklaydi. Bu zaiflik emas — bu sizning kuch manbaingiz.",
+        strong:["Chuqur o‘ylay olasiz","Diqqatni uzoq saqlaysiz","O‘zingizni yaxshi tushunasiz"],
+        tips:["Kuningizda 20–30 daqiqa faqat o‘zingiz uchun vaqt ajrating","Ko‘p odamli tadbirdan keyin dam olishni oldindan rejalang"] },
+      harakat: { name:"Harakat orqali", tag:"Tanadan kuch olasiz",
+        desc:"Sizni yurish, sport va qo‘l bilan qilinadigan ishlar tiklaydi. Uzoq bir joyda o‘tirish sizni charchatadi.",
+        strong:["Faol va baquvvatsiz","Ishni amalda ko‘rsatasiz","Qiyinchilikdan keyin tez tiklanasiz"],
+        tips:["Ish orasida har soatda 5 daqiqa yurib keling","Muhim o‘ylar uchun sayr paytidan foydalaning"] },
+      ijod: { name:"Ijod orqali", tag:"Yangilikdan kuch olasiz",
+        desc:"Sizni yangi g‘oya, o‘rganish va biror narsa yaratish to‘ldiradi. Bir xillik sizni tez charchatadi.",
+        strong:["G‘oyalaringiz ko‘p","Yangi narsani tez o‘rganasiz","Oddiy ishga ham qiziq yechim topasiz"],
+        tips:["Haftada bir marta yangi narsa sinab ko‘ring: joy, kitob, mashg‘ulot","G‘oyalaringizni yozib boradigan daftar tuting"] },
+    },
+    questions: [
+      { q:"Uzoq kundan keyin sizga eng yaxshi dam nima?", a:[
+        ["Yaqinlarim bilan gaplashish","odam"],["Yolg‘iz, jim vaqt","tinch"],
+        ["Sayr yoki sport","harakat"],["Sevimli mashg‘ulotim: chizish, musiqa, yozish","ijod"]]},
+      { q:"Sizning ideal shanba ertalabingiz qanday?", a:[
+        ["Do‘stlar bilan nonushta","odam"],["Shoshilmasdan, choy va jimlik","tinch"],
+        ["Parkda yoki tog‘da yurish","harakat"],["Yangi narsa o‘rganish yoki yasash","ijod"]]},
+      { q:"Qachon vaqt qanday o‘tganini sezmay qolasiz?", a:[
+        ["Qiziq suhbat paytida","odam"],["Kitob yoki o‘z o‘ylarim bilan","tinch"],
+        ["Harakatda, qo‘lim band bo‘lganda","harakat"],["Biror narsani yaratayotganda","ijod"]]},
+      { q:"Ta’tilga qayerga borardingiz?", a:[
+        ["Katta kompaniya bilan dam olish maskaniga","odam"],["Tinch qishloq yoki suv bo‘yiga","tinch"],
+        ["Faol sayohatga: tog‘, velosiped","harakat"],["Yangi shaharga: muzey, ko‘chalar, odatlar","ijod"]]},
+      { q:"Qanday ish muhiti sizni kuchaytiradi?", a:[
+        ["Jamoa va ko‘p muloqot","odam"],["Tinch, hech kim chalg‘itmaydigan joy","tinch"],
+        ["Bir joyda o‘tirmaydigan, harakatli ish","harakat"],["Erkinlik va yangi g‘oyalarga joy","ijod"]]},
+      { q:"Kayfiyatingizni ko‘tarish uchun odatda…", a:[
+        ["Kimgadir qo‘ng‘iroq qilaman","odam"],["Sevimli joyimda jim o‘tiraman","tinch"],
+        ["Tashqariga chiqib yuraman","harakat"],["Musiqa qo‘yib, biror narsa qilaman","ijod"]]},
+      { q:"Yangi hafta boshida sizga nima kuch beradi?", a:[
+        ["Kimlar bilan uchrashishimni bilish","odam"],["Aniq va tinch reja","tinch"],
+        ["Yaxshi uyqu va ertalabki mashq","harakat"],["Qiziq, yangi vazifa","ijod"]]},
+      { q:"Qaysi so‘z sizga yaqinroq?", a:[
+        ["Birga","odam"],["Sukunat","tinch"],["Harakat","harakat"],["Ilhom","ijod"]]},
+    ],
+  },
+};
+
+/* =====================================================================
+   3) MANTIQ
+   ===================================================================== */
+const $ = s => document.querySelector(s);
+const state = { test:null, order:[], answers:[], cur:0, result:null, lead:null, done:{} };
+
+function toast(t){ const el=$("#toast"); el.textContent=t; el.classList.add("on"); clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove("on"),2600); }
+function show(id){
+  document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));
+  $("#s-"+id).classList.add("active");
+  window.scrollTo({top:0,behavior:"instant"});
+}
+// Havolani yangilash. Ba’zi joylarda (chat ko‘rinishi, iframe) bunga ruxsat yo‘q — xato bo‘lsa, shunchaki o‘tkazib yuboramiz.
+function setHash(h){
+  try{ history.replaceState(null,"",h ? "#"+h : location.pathname + location.search); }catch(e){}
+}
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+
+/* ---------- Bo'lim kartalari ---------- */
+function cardHTML(key, i){
+  const T = TESTS[key];
+  return `<button class="tcard ${state.done[key]?"is-done":""}" data-test="${key}">
+    <span class="done">✓ Topshirilgan</span>
+    <div class="ic"><svg viewBox="0 0 24 24">${T.icon}</svg></div>
+    <div class="n">${i+1}-bo‘lim</div>
+    <h3>${T.title}</h3>
+    <p>${T.card}</p>
+    <div class="meta"><span>${T.questions.length} savol · 3 daqiqa</span><span class="go">${state.done[key]?"Qayta":"Boshlash"} <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    <svg class="corner"><use href="#mark"/></svg>
+  </button>`;
+}
+function renderCards(){
+  const keys = Object.keys(TESTS);
+  $("#testCards").innerHTML = keys.map(cardHTML).join("");
+  $("#moreCards").innerHTML = keys.filter(k=>k!==state.test).map(k=>cardHTML(k, keys.indexOf(k))).join("");
+  document.querySelectorAll("[data-test]").forEach(b=>b.onclick=()=>startTest(b.dataset.test));
+}
+
+/* ---------- Test ---------- */
+function startTest(key){
+  const T = TESTS[key];
+  state.test = key; state.cur = 0;
+  state.answers = new Array(T.questions.length).fill(null);
+  state.order = T.questions.map(Q => shuffle(Q.a.map((_,i)=>i)));   // javoblar tartibi aralash
+  $("#qName").textContent = T.title;
+  $("#crumb").textContent = T.title;
+  $("#qPath").innerHTML = T.questions.map((_,i)=>`<div class="c" style="height:${30+ (i+1)/T.questions.length*70}%"></div>`).join("");
+  setHash(key);
+  show("quiz"); renderQ();
+}
+function renderQ(){
+  const T = TESTS[state.test], Q = T.questions[state.cur], n = T.questions.length;
+  $("#qPath").querySelectorAll(".c").forEach((c,i)=>{ c.className="c"+(i<state.cur?" f":"")+(i===state.cur?" now":""); });
+  $("#qCount").textContent = `${state.cur+1} / ${n}`;
+  $("#qText").textContent = Q.q;
+  $("#qBackTxt").textContent = state.cur===0 ? "Bo‘limlarga" : "Oldingi savol";
+  $("#qOpts").innerHTML = state.order[state.cur].map((ai,pos)=>
+    `<button class="opt ${state.answers[state.cur]===ai?"sel":""}" data-a="${ai}" style="animation-delay:${pos*60}ms"><span class="k">${pos+1}</span>${Q.a[ai][0]}</button>`).join("");
+  $("#qOpts").querySelectorAll(".opt").forEach(b=>b.onclick=()=>pick(+b.dataset.a, b));
+}
+let locked=false;
+function pick(ai, btn){
+  if (locked) return; locked=true;
+  state.answers[state.cur]=ai;
+  $("#qOpts").querySelectorAll(".opt").forEach(o=>o.classList.remove("sel")); btn.classList.add("sel");
+  setTimeout(()=>{
+    locked=false;
+    if (state.cur < TESTS[state.test].questions.length-1){ state.cur++; renderQ(); }
+    else finishQuiz();
+  }, 280);
+}
+$("#qBack").onclick = ()=>{ if(state.cur>0){ state.cur--; renderQ(); } else goHome(); };
+document.addEventListener("keydown", e=>{
+  if (!$("#s-quiz").classList.contains("active")) return;
+  const n=parseInt(e.key), btns=$("#qOpts").children;
+  if (n>=1 && n<=btns.length) btns[n-1].click();
+  if (e.key==="Backspace") $("#qBack").click();
+});
+
+/* ---------- Hisoblash: ulush (daraja emas) ---------- */
+function score(){
+  const T = TESTS[state.test], keys = Object.keys(T.types), cnt = {};
+  keys.forEach(k=>cnt[k]=0);
+  state.answers.forEach((ai,qi)=>cnt[T.questions[qi].a[ai][1]]++);
+  const total = state.answers.length;
+  // eng katta qoldiq usuli — jami aniq 100% bo‘lishi uchun
+  let rows = keys.map(k=>{ const raw=cnt[k]/total*100; return {key:k, pct:Math.floor(raw), rem:raw%1, cnt:cnt[k]}; });
+  let left = 100 - rows.reduce((s,r)=>s+r.pct,0);
+  rows.slice().sort((a,b)=>b.rem-a.rem).slice(0,left).forEach(r=>r.pct++);
+  return rows.sort((a,b)=>b.cnt-a.cnt || keys.indexOf(a.key)-keys.indexOf(b.key));
+}
+function finishQuiz(){
+  state.result = score();
+  $("#qPath").querySelectorAll(".c").forEach(c=>c.className="c f");
+  $("#peek").innerHTML = state.result.map((r,i)=>`<i style="width:${Math.max(r.pct,4)}%;background:${COLORS[i]}"></i>`).join("");
+  setTimeout(()=>show("lead"), 250);
+}
+
+/* ---------- Forma ---------- */
+const phoneEl = $("#phone");
+phoneEl.addEventListener("input", ()=>{
+  const d = phoneEl.value.replace(/\D/g,"").slice(0,9);
+  phoneEl.value = [d.slice(0,2),d.slice(2,5),d.slice(5,7),d.slice(7,9)].filter(Boolean).join(" ");
+});
+$("#leadForm").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const name = $("#name").value.trim(), digits = phoneEl.value.replace(/\D/g,"");
+  $("#f-name").classList.toggle("bad", name.length<2);
+  $("#f-phone").classList.toggle("bad", digits.length!==9);
+  if (name.length<2 || digits.length!==9) return;
+  if ($("#hp").value) return;   // spam-bot
+
+  const T = TESTS[state.test], top = state.result[0];
+  state.lead = { name, phone:"+998"+digits, age:$("#age").value || "—", tg:$("#tg").value.trim() || "—" };
+  const payload = {
+    test: T.title,
+    ...state.lead,
+    top: T.types[top.key].name + " (" + top.pct + "%)",
+    scores: state.result.map(r=>T.types[r.key].name+": "+r.pct+"%").join("\n"),
+    answers: T.questions.map((Q,i)=>(i+1)+". "+Q.a[state.answers[i]][0]).join("\n"),
+    page: location.href.split("#")[0],
+  };
+  const btn = $("#submitBtn"); btn.disabled=true; btn.textContent="Yuborilmoqda...";
+  try{
+    await fetch(CONFIG.endpoint,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});
+  }catch(err){ console.warn("Yuborishda xato:",err); }
+  btn.disabled=false; btn.textContent="Natijani ko‘rish va PDF olish";
+  state.done[state.test]=true;
+  renderResult(); show("result");
+  setTimeout(downloadPDF, 700);
+});
+
+/* ---------- Natija ---------- */
+function renderResult(){
+  const T = TESTS[state.test], R = state.result, top = T.types[R[0].key];
+  const tie = R[1] && R[1].cnt===R[0].cnt;
+  $("#rSmall").textContent = T.title + " · sizga eng yaqin tur" + (tie ? "" : " · " + R[0].pct + "%");
+  $("#rTitle").textContent = top.name;
+  $("#rTag").textContent = top.tag;
+  $("#rDesc").textContent = top.desc + (tie ? ` Sizda “${T.types[R[1].key].name}” turi ham xuddi shunchalik kuchli.` : "");
+  $("#rMix").innerHTML = R.map((r,i)=>`<i style="background:${COLORS[i]}" data-w="${r.pct}"></i>`).join("");
+  $("#rLegend").innerHTML = R.map((r,i)=>`<button class="lg" data-k="${r.key}"><span class="dot" style="background:${COLORS[i]}"></span><b>${T.types[r.key].name}</b><span class="p" data-n="${r.pct}">0%</span></button>`).join("");
+  $("#rInfo").className="tinfo";
+  $("#rLegend").querySelectorAll(".lg").forEach(b=>b.onclick=()=>{
+    const on = b.classList.contains("on");
+    $("#rLegend").querySelectorAll(".lg").forEach(x=>x.classList.remove("on"));
+    if (on){ $("#rInfo").className="tinfo"; return; }
+    b.classList.add("on");
+    const t = T.types[b.dataset.k];
+    $("#rInfo").innerHTML = `<b>${t.name} — ${t.tag.toLowerCase()}.</b> ${t.desc}`;
+    $("#rInfo").className="tinfo on";
+  });
+  $("#rStrong").innerHTML = top.strong.map(s=>`<li>${s}</li>`).join("");
+  $("#rTips").innerHTML = top.tips.map(s=>`<li>${s}</li>`).join("");
+  renderCards();
+  // animatsiya
+  requestAnimationFrame(()=>setTimeout(()=>{
+    $("#rMix").querySelectorAll("i").forEach(i=>i.style.width=i.dataset.w+"%");
+    $("#rLegend").querySelectorAll(".p").forEach(p=>{
+      const end=+p.dataset.n, t0=performance.now();
+      (function step(t){ const k=Math.min((t-t0)/900,1); p.textContent=Math.round(end*(1-Math.pow(1-k,3)))+"%"; if(k<1) requestAnimationFrame(step); })(t0);
+    });
+  },80));
+}
+$("#againBtn").onclick = ()=>startTest(state.test);
+$("#shareBtn").onclick = async ()=>{
+  const url = location.href.split("#")[0];
+  const text = "Men “"+TESTS[state.test].title+"” testini topshirdim. Siz ham sinab ko‘ring:";
+  try{
+    if (navigator.share){ await navigator.share({title:document.title,text,url}); return; }
+    await navigator.clipboard.writeText(text+" "+url); toast("Havola nusxalandi");
+  }catch(e){ toast("Havola: "+url); }
+};
+
+/* ---------- PDF ---------- */
+function fillReport(){
+  const T = TESTS[state.test], R = state.result, top = T.types[R[0].key], d = new Date(), p = n=>String(n).padStart(2,"0");
+  $("#pTest").textContent = T.title + " testi";
+  $("#pDate").textContent = p(d.getDate())+"."+p(d.getMonth()+1)+"."+d.getFullYear();
+  $("#pName").textContent = state.lead.name;
+  $("#pPct").textContent = R[0].pct + "%";
+  $("#pTitle").textContent = top.name;
+  $("#pTag").textContent = top.tag + " · 2-tur: " + T.types[R[1].key].name + " (" + R[1].pct + "%)";
+  $("#pDesc").textContent = top.desc;
+  $("#pMix").innerHTML = R.filter(r=>r.pct>0).map(r=>`<i style="width:${r.pct}%;background:${COLORS[R.indexOf(r)]}"></i>`).join("");
+  $("#pLgd").innerHTML = R.map((r,i)=>`<div><span class="d" style="background:${COLORS[i]}"></span>${T.types[r.key].name}<b>${r.pct}%</b></div>`).join("");
+  $("#pStrong").innerHTML = top.strong.map(s=>`<li>${s}</li>`).join("");
+  $("#pTips").innerHTML = top.tips.map(s=>`<li>${s}</li>`).join("");
+  const t2 = T.types[R[1].key], t3 = T.types[R[2].key];
+  $("#pSec").innerHTML = `<h5>Ikkinchi yaqin turingiz: ${t2.name} (${R[1].pct}%)</h5><p>${t2.desc}</p><h5>Uchinchi: ${t3.name} (${R[2].pct}%)</h5><p>${t3.desc}</p>`;
+  $("#pTel").textContent = "Tel: " + CONFIG.phone;
+  $("#pTg").textContent = "Telegram: " + CONFIG.telegram;
+}
+async function downloadPDF(){
+  if (!state.result || !state.lead) return;
+  const btn=$("#pdfBtn"); btn.disabled=true;
+  try{
+    fillReport();
+    await document.fonts.ready;
+    const canvas = await html2canvas($("#report"),{scale:2,backgroundColor:"#ffffff",useCORS:true});
+    const pdf = new jspdf.jsPDF({unit:"mm",format:"a4"});
+    pdf.addImage(canvas.toDataURL("image/jpeg",0.95),"JPEG",0,0,210,297);
+    pdf.save((TESTS[state.test].title+"_"+state.lead.name).replace(/[^\p{L}\p{N}]+/gu,"_")+".pdf");
+    toast("PDF yuklab olindi");
+  }catch(err){ console.error(err); toast("PDF yaratib bo‘lmadi. Qayta urinib ko‘ring."); }
+  btn.disabled=false;
+}
+$("#pdfBtn").onclick = downloadPDF;
+
+/* ---------- Bosh sahifa / havola orqali kirish ---------- */
+function goHome(){ setHash(""); $("#crumb").textContent="Psixologik testlar"; state.test=null; renderCards(); show("home"); }
+
+// Logo: sichqoncha bilan sariq kvadratni darvozadan "o'tkazish"
+const art = $("#gateArt"), gsq = $("#gsq");
+art.addEventListener("mousemove", e=>{
+  const r = art.getBoundingClientRect(), y = (e.clientY - r.top) / r.height;
+  gsq.style.transition="transform .2s"; gsq.style.transform = `translateY(${(0.5 - y) * -30}px)`;
+});
+art.addEventListener("mouseleave", ()=>{ gsq.style.transition="transform .6s"; gsq.style.transform=""; });
+
+renderCards();
+// To‘g‘ridan-to‘g‘ri havola: sayt.uz/#temperament, #muloqot, #energiya
+let h = ""; try{ h = location.hash.slice(1); }catch(e){}
+if (TESTS[h]) startTest(h);
+</script>
+</body>
+</html>
